@@ -1,42 +1,37 @@
-                                                        # HRA KÁMEN/NŮŽKY/PAPÍR
+# HRA KÁMEN/NŮŽKY/PAPÍR
+
 print("Zahrajeme si Kámen - Nůžky - Papír!")
 print()
-hrac = str(input("Vyber si (kámen/nůžky/papír): "))
+
+# přiřazení kámen/nůžky/papír do proměnné pc a její převedení na str
+from random import randrange                           
+pc = randrange(3)
+pc = str(pc)  
+
+# žádáme vstup od hráče
+hrac = input("Vyber si (kámen/nůžky/papír): ")
 print()
 
-from random import randrange                            # náhoda
-cislo = randrange(3)                                    # vybere čislo od 0-2 a přiřadí kamen, nuzky, papir do proměnné pc
-if cislo == 0:
-    pc = "kámen"
-elif cislo == 1:
-    pc = "nůžky"
-else: 
-    pc = "papír"
+# převede vstup celý na malý
+hrac = str(hrac.lower())
 
-print("tvá volba: ", hrac)
-print("protihráč: ", pc)
-print()
+# přiřazení do proměnné člověk 
+if (hrac == 'kámen') or (hrac == 'kamen'):
+    hrac = '2'
+elif (hrac == 'nuzky') or (hrac == 'nůžky'):
+    hrac = '1'
+elif (hrac == 'papír') or (hrac == 'papir'):
+    hrac = '0'
+else:
+    print("Zadej jen kámen/nůžky/papír. Jinak nemůžeme hrát...")
+    quit()
 
-                                                      # ošetření, možnosti, napsat slovo jakkoliv
-if pc == "kámen" or pc== "KÁMEN" or pc== "Kámen" or pc=="KAMEN" or pc== "KÁMEN":
-    pc = "kamen"
-if hrac == "kámen" or hrac == "KÁMEN" or hrac == "Kámen" or hrac == "KAMEN" or hrac == "kamen":
-    hrac = "kamen"
-if pc == "Papír" or pc == "Papir" or pc == "papír" or pc == "PAPIR" or pc== "PAPÍR" or pc == "papir":
-    pc = "papir"
-if hrac == "Papír" or hrac == "Papir" or hrac == "papír" or hrac == "PAPIR" or hrac == "PAPÍR" or hrac == "papir":
-    hrac = "papir"
-if pc == "nůžky" or pc == "nuzky" or pc == "Nuzky" or pc == "Nůžky" or pc == "NŮŽKY" or pc == "NUZKY":
-    pc = "nuzky"
-if hrac == "nůžky" or hrac == "nuzky" or hrac == "Nuzky" or hrac == "Nůžky" or hrac == "NŮŽKY" or hrac == "NUZKY":
-    hrac = "nuzky"
-
-                                                        # if-elif, pro vypsání výsledku, dle klasické hry kámen/nůžky/papír
+# if-elif, pro vypsání výsledku, dle klasické hry kámen/nůžky/papír
 if pc == hrac:
     print("Plichta.")
-elif (pc == "kamen" and hrac == "nuzky") or (pc == "nuzky" and hrac == "papir") or (pc == "papir" and hrac=="kamen"):
+elif (pc == "2" and hrac == "1") or (pc == "1" and hrac == "0") or (pc == "1" and hrac== "3"):
     print("Počítač vyhrál.")
-elif (hrac == "kamen" and pc == "nuzky") or (hrac == "nuzky" and pc == "papir") or (hrac == "papir" and pc=="kamen"):
+elif (hrac == "2" and pc == "1") or (hrac == "1" and pc == "0") or (hrac == "1" and pc=="3"):
     print("Vyhrál jsi!")
 else:
     print("Taková možnost není.")
