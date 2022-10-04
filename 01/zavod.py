@@ -1,7 +1,19 @@
-                                                                        # Závod se zvířátky
-zavodnik = float(input('Zadej rychlost, kterou poběžíš (km/h)... '))    # dotazovaný zadá rychlost, jakou chce běžet (km/h)
+# Závod se zvířátky 
+# 
+# dotazovaný zadá rychlost, jakou chce běžet (km/h)                                                                       
+zavodnik = input('Zadej rychlost, kterou poběžíš [km/h]... ')
 
-if zavodnik >= 120:                                                     # dle rychlosti se vybere podmínka a přiřadí zvířátko
+# konrola vstupu
+try:
+    a = float(zavodnik)
+except ValueError:
+    print('Rychlost nebyla zadaná ve správném formátu.Uveď ji prosím jako celé nebo desetinné číslo, např. 5.5, 15, 10.7')
+    quit()
+    
+# převod str na float
+zavodnik = float(zavodnik)
+# dle rychlosti se vybere podmínka a přiřadí zvířátko
+if zavodnik >= 120:                                                    
     print('WOW! Nehoří ti nohy? Ty jsi určitě Sonic!')
 elif zavodnik < 120 and zavodnik >= 90:
     print('Člověče...můžeš závodit s gepardem')
@@ -15,3 +27,4 @@ elif zavodnik < 10 and zavodnik >= 1:
     print('Bacha na hlemýždě. Je ti v patách.')
 else:
     print('Tak toto už je souboj jeden na jednoho. Ty a želva.')
+
