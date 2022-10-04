@@ -1,7 +1,18 @@
 print('Odpovídej ano/ne')
+print()
+
 # program získá odpovědi
-stastna = str (input('Jsi šťastná? '))
-bohata = str (input('Jsi bohatá? '))
+stastna = input('Jsi šťastná? ')
+bohata = input('Jsi bohatá? ')
+print()
+
+# ošetření, že vstup může být napsán jakkoliv
+stastna = stastna.lower()
+bohata = bohata.lower()
+
+# ošetření, že vstup je ano/ne
+if (bohata != 'ano' and bohata != 'ne') and (stastna != 'ano' and stastna != 'ne'):
+    print('Odpovídej pouze ano/ne. ')
 
 #větev pro odpověď, že je šťastná
 if stastna == 'ano':
@@ -12,7 +23,7 @@ if stastna == 'ano':
     elif bohata == 'ne':
         print('Zkus míň utrácet.')
 # větev pro odpověď, že není šťastná
-elif stastna =='ne':
+elif stastna == 'ne':
     # není šťastná a je bohatá
     if bohata == 'ano':
         print('Zkus se víc usmívat.')
@@ -20,11 +31,7 @@ elif stastna =='ne':
     elif bohata == 'ne':
         print('To je mi líto.')
 
-# upozornění, když není odpověď ano/ne
-if bohata !='ano' and bohata !='ne':
-    print('Odpovídej pouze ano/ne')
-elif stastna !='ano' and stastna !='ne':
-    print('Odpovídej pouze ano/ne')
+print()
 
 
 
