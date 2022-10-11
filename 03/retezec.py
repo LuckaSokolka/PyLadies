@@ -5,7 +5,7 @@ retezec = input('Napiš slovo: ')
 
 # zadání pozice od uživatele a ošetření, že délka není kratší než pozice
 pozice = int(input('Na které pozici si přeješ změnu? '))
-while pozice > (len(retezec)) and pozice >= 0:
+while pozice > (len(retezec)) or (pozice <= 0):
     pozice = int(input('Pozice má být v rozmezí počtu písmen ve slově.\nZkus to ještě jednou. Pozice: '))
 
 # znak na výměnu

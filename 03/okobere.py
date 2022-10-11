@@ -11,7 +11,7 @@ print('Vitej ve hře OKO BERE')
 print()
 print('Pravidla: Lížeš si kartu dokud tvůj součet není roven 21. Pokud je součet > 21, prohrál jsi.')
 
-# dotaz na první kartu a ošetření, že kód neproběhne, pokud hráč nechce pokračovat
+# dotaz na první kartu a ošetření, že kód neproběhne, pokud hráč nechce pokračovat nebo zadá chybnou odpověď
 prvni_karta = input('Můžeme začít? ')
 prvni_karta = prvni_karta.lower()
 
