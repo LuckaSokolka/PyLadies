@@ -1,0 +1,47 @@
+# OKO BERE
+''' hráč si nechává otáčet karty, pokud je jejich součet = 21  vyhrál,
+ pokud je součet > 21 prohrál '''
+
+from random import randrange
+
+# Zahájení
+print()
+print('Vitej ve hře OKO BERE')
+print()
+print('Lížeš si kartu dokud tvůj součet není roven 21.Pokud je součet > 21, prohrál jsi.')
+print()
+
+odpoved = input('Budeš hrát? ')
+# ošetření: odpověď jen ano/ne
+odpoved = odpoved.lower()
+if odpoved != 'ano' and odpoved != 'ne':
+    odpoved = input('Odpovídej pouze ano/ne. Jdeme hrát? ')
+
+soucet = 0
+
+if odpoved == 'ano':
+    karta = randrange(2, 11)
+    soucet += karta
+
+    while soucet < 21:
+
+        odpoved = input(f'Lízl jsi {karta}. Součet je {soucet}. Kartu? ')
+        odpoved = odpoved.lower()
+
+        if odpoved == 'ano':
+            karta = randrange(2, 11)
+            soucet += karta
+        elif odpoved == 'ne':
+            print(f'Dosáhl jsi {soucet}. Do 21 ti chybělo {21 - soucet}.')
+            quit()
+        else:
+            print('Odpovídej pouze ano/ne.')
+
+    if soucet == 21:
+        print(f'OKO BERE! Máš {soucet}. Gratuluji.')
+
+    else:
+        print(f'Bohužel. Máš {soucet}, to je víc než 21.')
+
+else:
+    print('To je škoda. Tak třeba příště')
