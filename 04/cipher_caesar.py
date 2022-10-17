@@ -1,14 +1,20 @@
 diacritics = ['á', 'é', 'í', 'ó', 'ú', 'ý', 'č', 'ď', 'ě', 'ň', 'ř', 'š', 'ť', 'ž', 'ů']
+plain_text = input('plain text: ')
 
 key = input('key: ')
-while key.isdigit() is False:
-    try:
-        a = int(key)
-    except ValueError:
-        print('Jako key je možné použít pouze celé číslo.')
-        key = input('key: ')
+while not key.isdigit():
+    print('Key musí být číslo.')
+    key = input('key: ')
 
-plain_text = input('plain text: ')
+'''
+ord(character) -> transfer character to number in ASCII
+... + key -> shift of key
+... - 97 -> in ASCII start alphabet with number 97,
+    (- 97) made the same order like in alphabet
+... % 26 -> secure that 'Z' will by continue from the beginning of the alphabet,
+    alphabet have 26 characters
+... + 97 -> assign number in ASCII
+... chr -> transfer number to character'''
 
 for character in plain_text:
     if character.isalnum():
@@ -26,13 +32,3 @@ for character in plain_text:
     else:
         print(character, end="")
 print()
-
-'''
-ord(character) -> transfer character to number in ASCII
-... + key -> shift of key
-... - 97 -> in ASCII start alphabet with number 97,
-    (- 97) made the same order like in alphabet
-... % 26 -> secure that 'Z' will by continue from the beginning of the alphabet,
-    alphabet have 26 characters
-... + 97 -> assign number in ASCII
-... chr -> transfer number to character'''
