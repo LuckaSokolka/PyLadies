@@ -1,53 +1,78 @@
-def vyhodnot(pole):
-    if 'xxx' in pole:
-        print('Vyhrál X')
-        exit()
-    elif 'ooo' in pole:
-        print('Vyhrál O')
-        exit()
-    elif '-' in pole == False: 
-        print('Remíza')
-        exit()
-    else:
-        print("Pokračujeme, nikdo nevyhrál.")
-        
-def tah_hrace(pole, pozice):
-    while True:
-        if pozice > 0 and pozice <= len(pole):
-            if (pole[(int(pozice))-1] != 'x' and pole[(int(pozice))-1] != 'o'):
-                pole[pozice - 1] = 'x'
-                pole = ''.join(pole)
-                return pole
-            pozice = int(input("Políčko je obsazené, vyber jiné... "))
-        pozice = int(input("Fungují jen celá, kladná čísla v rozmezí 1-20. Políčko: "))
-    
-    
-     
 from random import randrange
+import time
 
-def tah_pocitace(pole):
+# TICK-TACK-TOE
+
+
+def score(area):  # fce get list(area) and return result in accordance with area
+
+    # draw
+    if '-' not in area:
+        print(' "!" ')
+        quit()
+    # players won
+    elif (3 * player_symbol) in area:
+        print(' "X" ')
+        quit()
+    # pc won
+    elif (3 * pc_symbol) in area:
+        print('"O"')
+        quit()
+    # next play
+    else:
+        print('"-"')
+        quit()
+
+
+def move(area, position, symbol):  # put symbol into area, get area, position 1 - 19, symbol
+
+    area = list(area)
+    area[position - 1] = symbol
+    area = ''.join(area)
+    return area
+
+
+def player_move(area):  # get input(position) from player, test input and return area with symbol
+
+    position = input('Kam umístit X? Vyber políčko 1 - 20. Tvá volba: ')
     while True:
-        pozice = randrange(1, 20)
-        if pole[(int(pozice))-1] != 'x' and pole[(int(pozice))-1] != 'o':
-            #pozice = int(pozice)
-            pole[pozice - 1] = 'o'
-            pole = ''.join(pole)
-            return pole
 
-herni_pole = "--------------------"
-def piskvorky1d(herni_pole):
+        position = str(position)
+        if position.isalpha():
+            position = int(input("Políčko vybírej jen pomocí celých, kladných čísel. Políčko: "))
+        position = int(position)
+
+        while position <= 0 or position >= (len(area)+1):
+            position = (int(input(f"Fungují jen celá, kladná čísla v rozmezí 1-{len(area)}. Políčko: ")))
+
+        if (area[(int(position))-1] != player_symbol
+                and area[(int(position))-1] != pc_symbol):
+            return move(area, position, player_symbol)
+
+        position = int(input("Políčko je obsazené, vyber jiné... "))
+
+
+def pc_move(area):  # move for pc, position choose by randrange
+
     while True:
-        policko = int(input('Kam umístit X? Vyber políčko 1 - 20. Tvá volba: '))
-        herni_pole = tah_hrace(list(herni_pole), policko)
-        print("hráč:", herni_pole)
-        #vyhodnot(herni_pole)
-        herni_pole = tah_pocitace(list(herni_pole))
-        print("PC", herni_pole)
-        print(vyhodnot(herni_pole))
-
-print(piskvorky1d(herni_pole))
+        position = randrange(1, 20)
+        if (area[(int(position))-1] != pc_symbol
+                and area[(int(position))-1] != player_symbol):
+            return move(area, position, pc_symbol)
 
 
+def tick_tack_toe_1D(play_area):  # all together in game
+
+    while True:
+        play_area = player_move(play_area)
+        print(play_area, "hráč")
+        play_area = pc_move(play_area)
+        time.sleep(2)
+        print(play_area, "pc")
+        print(score(play_area))
 
 
-
+pc_symbol = "O"
+player_symbol = "X"
+play_area = 20 * "-"
+tick_tack_toe_1D(play_area)
