@@ -21,7 +21,6 @@ def score(area):  # fce get list(area) and return result in accordance with area
     # next play
     else:
         print('"-"')
-        quit()
 
 
 def move(area, position, symbol):  # put symbol into area, get area, position 1 - 19, symbol
@@ -62,12 +61,12 @@ def pc_move(area):  # move for pc, position choose by randrange
 
 
 def tick_tack_toe_1D(play_area):  # all together in game
-
+    
     while True:
         play_area = player_move(play_area)
         print(play_area, "hráč")
         play_area = pc_move(play_area)
-        time.sleep(2)
+        time.sleep(1)
         print(play_area, "pc")
         print(score(play_area))
 
