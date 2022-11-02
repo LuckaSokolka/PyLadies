@@ -4,15 +4,15 @@ import time
 # TICK-TACK-TOE
 
 
-def score(area):  # fce get list(area) and return result in accordance with area
+def score(area):  # function get list(area) and return result in accordance with area
 
     # draw
     if '-' not in area:
-        print(' "!" ')
+        print('"!"')
         quit()
     # players won
     elif (3 * player_symbol) in area:
-        print(' "X" ')
+        print('"X"')
         quit()
     # pc won
     elif (3 * pc_symbol) in area:
@@ -26,49 +26,48 @@ def score(area):  # fce get list(area) and return result in accordance with area
 def move(area, position, symbol):  # put symbol into area, get area, position 1 - 19, symbol
 
     area = list(area)
-    area[position - 1] = symbol
+    area[position] = symbol
     area = ''.join(area)
     return area
+
+def kontrola(position):
+    position = str(position)
+    while position.isdigit():
+      return position
+    print("zadej číslo")
 
 
 def player_move(area):  # get input(position) from player, test input and return area with symbol
 
-    position = input('Kam umístit X? Vyber políčko 1 - 20. Tvá volba: ')
     while True:
-
-        position = str(position)
-        if position.isalpha():
-            position = int(input("Políčko vybírej jen pomocí celých, kladných čísel. Políčko: "))
-        position = int(position)
-
-        while position <= 0 or position >= (len(area)+1):
-            position = (int(input(f"Fungují jen celá, kladná čísla v rozmezí 1-{len(area)}. Políčko: ")))
-
-        if (area[(int(position))-1] != player_symbol
-                and area[(int(position))-1] != pc_symbol):
+        position = int(input(f'Políčko (1 - {len(area)}): '))
+        position = position - 1
+        kontrola(position)
+        while int(position) >= 0 and (int(position) < len(area)):
+            if area[int(position)] != "-":
+                print("políčko je obsazené")
+                break
             return move(area, position, player_symbol)
-
-        position = int(input("Políčko je obsazené, vyber jiné... "))
-
 
 def pc_move(area):  # move for pc, position choose by randrange
 
     while True:
         position = randrange(1, 20)
-        if (area[(int(position))-1] != pc_symbol
-                and area[(int(position))-1] != player_symbol):
+        if area[int(position)] == "-":
             return move(area, position, pc_symbol)
 
 
 def tick_tack_toe_1D(play_area):  # all together in game
-    
+
     while True:
         play_area = player_move(play_area)
         print(play_area, "hráč")
+        score(play_area)
+        print()
         play_area = pc_move(play_area)
         time.sleep(1)
         print(play_area, "pc")
-        print(score(play_area))
+        score(play_area)
 
 
 pc_symbol = "O"
