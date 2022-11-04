@@ -14,7 +14,7 @@ only_numbers = []
 
 while True:
 
-    ID = list(input('Napiš rodné číslo: '))
+    ID = input('Napiš rodné číslo: ')
 
     if ID[6] != "/":
         print("chybí lomítko nebo je špatný počet čísel")
@@ -45,6 +45,7 @@ while True:
         if month_ID > 50:
             month_ID_all = month_ID - 50
             month_ID = month_ID_all
+
         if month_ID == 2 and day_ID <= 29:
             print('Zadané rodné číslo je v pořádku')
             quit()
@@ -57,4 +58,3 @@ while True:
         else:
             print('Rodné číslo je nevalidní')
             break
-
