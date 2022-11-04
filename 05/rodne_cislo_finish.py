@@ -41,18 +41,20 @@ while True:
         continue
 
     if ((modulo_eleven) % 11 == 0) and year_ID in years:
+
         if month_ID > 50:
             month_ID_all = month_ID - 50
-            if month_ID_all == 2 and day_ID <= 29:
-                print('Zadané rodné číslo je v pořádku')
-                quit()
-            elif (month_ID_all in months_30) and day_ID <= 30:
-                print('Zadané rodné číslo je v pořádku')
-                quit()
-            elif (month_ID_all in months_31) and day_ID <= 31:
-                print('Zadané rodné číslo je v pořádku')
-                quit()
-            else:
-                print('Rodné číslo je nevalidní')
-                break
+            month_ID = month_ID_all
+        if month_ID == 2 and day_ID <= 29:
+            print('Zadané rodné číslo je v pořádku')
+            quit()
+        elif (month_ID in months_30) and day_ID <= 30:
+            print('Zadané rodné číslo je v pořádku')
+            quit()
+        elif (month_ID in months_31) and day_ID <= 31:
+            print('Zadané rodné číslo je v pořádku')
+            quit()
+        else:
+            print('Rodné číslo je nevalidní')
+            break
 
