@@ -1,12 +1,17 @@
-from piskvorky import move
+from piskvorky import move, player_move
 from ai import pc_move
 from random import randrange
+import time
 
+
+player_symbol = "X"
+pc_symbol = "O"
 
 def test_move():
     symbol = 'X'
-    assert move(20 * "-", 19, symbol) == "-------------------X"
-    assert move(20 * "-", 0, symbol) == "X-------------------"
+    pole = 20 * "-"
+    assert move(pole, 19, symbol) == "-------------------X"
+    assert move(pole, 0, symbol) == "X-------------------"
 
 
 def test_pc_move():
@@ -21,36 +26,35 @@ def test_pc_move():
     assert area_test_next.count('X') == 1
 
 
-def test_score():
-    area_remiza = ("XOXOXOXOXOXOXOXOXOXO")
-    assert '-' not in area_remiza
-    area_player_win = ("XXX-----------------")
-    assert (3 * "X") in area_player_win
-    area_pc_win = ("------OOO-----------")
-    assert (3 * "O") in area_pc_win
-    area_next_game = ("XOXXO-----XO----OX--")
-    assert "-" in area_next_game
+def score(area):
+    # function get list(area) and return result in accordance with area
+    if (3 * player_symbol) in area:
+        return player_symbol
+    elif (3 * pc_symbol) in area:
+        return pc_symbol
+    elif '-' not in area:
+        return 0
+    else:
+        return "-"
 
-
-def player_move_without_input(area, position):
+def tick_tack_toe_1D(play_area):  # all together in game
 
     while True:
-        if not position.isdigit():
-            print("bereme jen číslo větší než 0")
-            continue
-        position = int(position) - 1
-        if position > (len(area)):
-            print("políčko je nedostupné")
-            continue
-        if (area[position] != "-"):
-            print("obsazeno")
-            continue
-        return move(area, position, "X")
+        play_area = player_move(play_area)
+        print(play_area, "hráč")
+        score(play_area)
+        if score(play_area) != "-":
+            break
+        play_area = pc_move(play_area)
+        time.sleep(1)
+        print(play_area, "pc")
+        score(play_area)
+        if score(play_area) != "-":
+            break
 
-
-def test_player_move():
-    area_player = player_move_without_input("---O----------XX-O--", "2")
-    assert len(area_player) == 20
-    assert area_player.count('O') == 2
-    assert area_player.count('-') == 15
-    assert area_player.count('X') == 3
+    if score(play_area) == player_symbol:
+        print("Vyhral hráč")
+    elif score(play_area) == pc_symbol:
+        print("Vyhral pc")
+    else:
+        print("Remíza")
