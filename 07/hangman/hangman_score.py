@@ -1,17 +1,14 @@
-from hangman_img import obesenec
+from hangman_img import hangman_picture
 
 
-def score(retezec, pismeno, pokus, slovo):
+def score(string, letter, attempt, word):
 
-    if pismeno in slovo:
-        return retezec
+    if letter in word:
+        return string
 
-    elif pismeno not in slovo and pokus == 10:
+    elif letter not in word and attempt == 10:
         print("Visíš")
-        return obesenec(pokus)
+        return hangman_picture(attempt)
 
-    elif pismeno not in slovo:
-        return obesenec(pokus)
-
-    elif "_" not in retezec:
-        return "Unikl jsi katovi."
+    elif letter not in word:
+        return hangman_picture(attempt)

@@ -1,8 +1,8 @@
-def obesenec(pokus):
-    return obesenci[pokus - 1]
+def hangman_picture(attempt):
+    return hangmen[attempt - 1]
 
 
-obesenci = ('''~~~~~~~''',
+hangmen = ('''~~~~~~~''',
 '''
 +
 |

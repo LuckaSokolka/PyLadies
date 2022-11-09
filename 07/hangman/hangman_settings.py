@@ -1,3 +1,3 @@
-def vytvor_retezec(slovo):
-    retezec = len(slovo) * "_"
-    return retezec
+def creat_string(word):
+    string = len(word) * "_"
+    return string

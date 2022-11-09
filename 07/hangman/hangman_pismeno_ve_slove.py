@@ -1,10 +1,10 @@
-def dosazeni_pismene(slovo, pismeno, retezec):
-    retezec = list(retezec)
-    if pismeno in slovo:
-        index_pismeno = slovo.index(pismeno)
-        retezec[index_pismeno] = pismeno
-        retezec = ''.join(retezec)
-        return retezec
+def installed_letter(word, letter, string):
+    string = list(string)
+    if letter in word:
+        index_pismeno = word.index(letter)
+        string[index_pismeno] = letter
+        string = ''.join(string)
+        return string
     else:
-        retezec = ''.join(retezec)
-        return retezec
+        string = ''.join(string)
+        return string
