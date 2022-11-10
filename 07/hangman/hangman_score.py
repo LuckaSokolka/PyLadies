@@ -13,4 +13,3 @@ def score(string, letter, attempt, word):
 
     elif letter not in word:
         return hangman_picture(attempt)
-
