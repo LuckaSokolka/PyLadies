@@ -1,17 +1,17 @@
-from piskvorky import move, player_move
+from piskvorky import move
 from ai import pc_move
-from random import randrange
 import time
 
 
 player_symbol = "X"
 pc_symbol = "O"
+play_area = 20 * "-"
+
 
 def test_move():
     symbol = 'X'
-    pole = 20 * "-"
-    assert move(pole, 19, symbol) == "-------------------X"
-    assert move(pole, 0, symbol) == "X-------------------"
+    assert move(play_area, 19, symbol) == "-------------------X"
+    assert move(play_area, 0, symbol) == "X-------------------"
 
 
 def test_pc_move():
@@ -37,7 +37,8 @@ def score(area):
     else:
         return "-"
 
-def tick_tack_toe_1D(play_area):  # all together in game
+
+def tick_tack_toe_test(play_area):  # all together in game
 
     while True:
         play_area = player_move(play_area)
@@ -58,3 +59,14 @@ def tick_tack_toe_1D(play_area):  # all together in game
         print("Vyhral pc")
     else:
         print("Remíza")
+
+
+def test_score():
+    area_test_player_win = ("XXX-----------------")
+    area_test_pc_win = ("OOO-----------------")
+    area_test_remiza = ("OXOXOXOXOXOXOXOXOXOX")
+    area_test_else = ("OXOXOX--------------")
+    assert score(area_test_player_win) == "X"
+    assert score(area_test_pc_win) == "O"
+    assert score(area_test_remiza) == 0
+    assert score(area_test_else) == "-"
