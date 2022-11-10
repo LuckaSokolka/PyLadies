@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 def hangman_picture(attempt):
     return hangmen[attempt - 1]
 
 
 hangmen = ('''~~~~~~~''',
-=======
-def obesenec(pokus):
-    return obesenci[pokus - 1]
-
-
-obesenci = ('''~~~~~~~''',
->>>>>>> 69623d0eb3daae941bfb622f978f77ba46a00aad
 '''
 +
 |
