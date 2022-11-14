@@ -11,8 +11,5 @@ def installed_letter(word, letter, string):
         for i in range(len(word)):
             if letter == word[i]:
                 string[i] = letter
-        string = ''.join(string)
-        return string
-    else:
-        string = ''.join(string)
-        return string
+    string = ''.join(string)
+    return string
