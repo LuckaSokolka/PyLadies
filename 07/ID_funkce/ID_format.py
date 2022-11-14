@@ -4,8 +4,11 @@ def ID_format(ID):
     slash = ID[6]
     last_four_numbers = ID[7:]
 
-    if first_six_numbers.isdigit() and last_four_numbers.isdigit() and slash == "/":
+    if (first_six_numbers.isdigit() and len(first_six_numbers) == 6
+            and last_four_numbers.isdigit() and len(last_four_numbers) == 4
+            and slash == "/"):
         return True
     else:
-        print('Formát rodného čísla je 123456/7891. Obsahuje pouze čísla a lomítko.')
+        print("Rodné číslo může obsahovat pouze čísla a lomítko.")
+        print("Formát rodného čísla: 000000/0000")
         return False

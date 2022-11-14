@@ -6,11 +6,6 @@ def birthdate(ID):
     elif year < 24:
         year = 2000 + int(year)
 
-    if int(ID[2:4]) > 50:
-        month = int(ID[2:4]) - 50
-        month = str(month)
-    else:
-        month = ID[2:4]
-
+    month = int(ID[2:4]) % 50
     day = ID[4:6]
-    return (f" {day}/{month}/{year}")
+    return (f" {day}.{month}.{year}")

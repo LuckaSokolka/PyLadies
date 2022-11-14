@@ -15,15 +15,15 @@ ID_only_numbers = []
 while True:
 
     ID = input('Napiš rodné číslo: ')
-    if ID[6] == "/":
+    if ID[6] == "/" and len(ID) == 11:
         try:
             a = int(ID[:6])
-            b = int(ID[7:])
+            b = int(ID[7:11])
         except ValueError:
-            print("v rodném čísle jsou nepovolené znaky")
+            print("Zadané rodné číslo obsahuje nepovolené znaky")
             continue
     else:
-        print("lomítky chybí nebo je na špatném místě")
+        print("Rodné číslo obsahuje 10 číslic a lomítko Př. 000000/0000")
         continue
 
     ID_only_numbers = ID[:6] + ID[7:]
@@ -35,18 +35,15 @@ while True:
 
     if (modulo_eleven % 11 == 0) and (year_ID in years) and (end < 6000):
 
-        if month_ID > 50:
-            month_ID = month_ID % 50
-
-        if month_ID == 2 and day_ID <= 29:
+        if month_ID % 50 == 2 and day_ID <= 29:
             print('Zadané rodné číslo je v pořádku')
-            quit()
-        elif (month_ID in months_30) and day_ID <= 30:
+            break
+        elif (month_ID % 50 in months_30) and day_ID <= 30:
             print('Zadané rodné číslo je v pořádku')
-            quit()
-        elif (month_ID in months_31) and day_ID <= 31:
+            break
+        elif (month_ID % 50 in months_31) and day_ID <= 31:
             print('Zadané rodné číslo je v pořádku')
-            quit()
+            break
     else:
         print('Rodné číslo je neplatné')
         break
