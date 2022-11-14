@@ -9,7 +9,7 @@ def field(columns, lines):
         memofield.append(temp)
     return memofield
 
-def vykresleni_pole():
+def game_field():
     for seznam in field(4,4):
         print(" ")
         for prvek in seznam:
