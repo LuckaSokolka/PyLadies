@@ -1,6 +1,7 @@
-def creat_string(word):
+def create_string(word):
     string = len(word) * "_"
     return string
+
 
 def installed_letter(word, letter, string):
     """put letter in right place in string"""
