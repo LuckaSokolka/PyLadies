@@ -32,7 +32,7 @@ def score(area):
         return "-"
 
 
-def tick_tack_toe_test(play_area):  # all together in game
+def tick_tack_toe_1d(play_area):  # all together in game
 
     while True:
         play_area = player_move(play_area)
