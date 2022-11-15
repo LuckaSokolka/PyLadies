@@ -1,3 +1,7 @@
+import time
+from ai import pc_move, move
+
+
 def player_move(area):
     # get input(position) from player, test input and return area with symbol
 
@@ -18,28 +22,37 @@ def player_move(area):
 
 def score(area):
     # function get list(area) and return result in accordance with area
-
-    # draw
-    if '-' not in area:
-        print('"!" REMÍZA')
-    # players won
-    elif (3 * player_symbol) in area:
-        print('"X" VYHRÁL')
-    # pc won
+    if (3 * player_symbol) in area:
+        return player_symbol
     elif (3 * pc_symbol) in area:
-        print('"O VYHRÁL"')
-    # next play
+        return pc_symbol
+    elif '-' not in area:
+        return 0
     else:
-        print('"-"')
+        return "-"
 
 
-def move(area, position, symbol):
-    # put symbol into area, get area, position 1 - 19, symbol
+def tick_tack_toe_test(play_area):  # all together in game
 
-    area = list(area)
-    area[position] = symbol
-    area = ''.join(area)
-    return area
+    while True:
+        play_area = player_move(play_area)
+        print(play_area, "hráč")
+        score(play_area)
+        if score(play_area) != "-":
+            break
+        play_area = pc_move(play_area)
+        time.sleep(1)
+        print(play_area, "pc")
+        score(play_area)
+        if score(play_area) != "-":
+            break
+
+    if score(play_area) == player_symbol:
+        print("Vyhral hráč")
+    elif score(play_area) == pc_symbol:
+        print("Vyhral pc")
+    else:
+        print("Remíza")
 
 
 player_symbol = "X"
