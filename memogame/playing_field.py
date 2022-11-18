@@ -13,7 +13,7 @@ def game_field():
     for seznam in field(4,4):
         print(" ")
         for prvek in seznam:
-            print(prvek, end=" ")
+            print(prvek, end=" ") # tady přiřadím k prvku obrázek, vytvořit seznam, zamíchat a přiřadit
         print(end="\n")
 
-vykresleni_pole()
+game_field()
