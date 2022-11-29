@@ -1,30 +1,29 @@
-class PyLady:
+from clovek import Clovek
 
+
+class PyLady(Clovek):
     def __init__(self, name):
-        self.name = name
         self.knowledge = 0  # max je 5
         self.max_knowledge = 5
         self.practice = 0  # max je 5
         self.max_practice = 5
-        self.focus = 3  # minimum 0
-        self.max_focus = 3
-        self.energy = 5  # minimum 0
-        self.max_energy = 5
         self.coach_capacity = 3  # min je 0
-        self.max_coach_capacity = 3
+        self.min_coach_capacity = 0
+        # self.couch = input('Vyber couche')
+        super().__init__(name)
 
     def __str__(self):
         return f"PyLady {self.name}. Její practice je {self.graficky_practice()} a knowledge {self.graficky_knowledge()}"
 
     def graficky_knowledge(self):
-        celkem = int(self.max_knowledge)
-        pocet = int(self.knowledge)
-        return "[{0}{1}]".format("#"*pocet, "_" * (celkem-pocet))
+        celkem = round(self.max_knowledge)
+        pocet = round(self.knowledge)
+        return "[{0}{1}]".format("#" * pocet, "_" * (celkem - pocet))
 
     def graficky_practice(self):
-        celkem = int(self.max_practice)
-        pocet = int(self.practice)
-        return "[{0}{1}]".format("#"*pocet, "_" * (celkem-pocet))
+        celkem = round(self.max_practice)
+        pocet = round(self.practice)
+        return "[{0}{1}]".format("#" * pocet, "_" * (celkem - pocet))
 
     def study(self, hour):
         # zvyšuje: practice a knowledge podle délky studia
@@ -32,19 +31,18 @@ class PyLady:
         # při energy <= 0 vypíše hlášku
         # při focus <= 0 vypíše hlášku
 
-        if self.energy > 0 and self.focus > 0:
-
-            hour = int(hour)
-            self.energy -= 1 * hour
-            if self.energy <= 0:
-                self.energy = 0
-
-            self.focus -= 1 * hour
-            if self.focus <= 0:
-                self.focus = 0
-
-            self.knowledge += 1/20 * hour
-            self.practice += 1/10 * hour
+        hour = int(hour)
+        if self.energy < hour:
+            print(f'{self.name} měla energii jen na {hour - self.energy} hod. Potřebuje se posilnit.')
+        if self.focus < hour:
+            print(f'{self.name} se zvládla soustředit jen {hour - self.focus} hod. Je čas si odpočinout.')
+        for i in range(hour):
+            if self.energy >= 1 and self.focus >= 1 and self.knowledge < 5 and self.practice < 5:
+                self.energy -= 1
+                self.focus -= 1
+                self.knowledge += 1/20
+                self.practice += 1/10
+            self.max_control()
 
     def homework(self):
         # musí být určitá úroveň knowledge a practice
@@ -62,42 +60,18 @@ class PyLady:
             self.coach_capacity = 0
             print('Coach potřebuje načerpat energii')
 
-    def eat(self):
-        # zvyšuje energy, připadně focus
-        self.energy += 1
-        if self.energy >= self.max_energy:
-            self.energy = self.max_energy
-
-        self.focus += 0.5
-        if self.focus >= self.max_focus:
-            self.focus = self.max_focus
-
-    def meditate(self):
-        # zvyšuje focus
-        self.focus += 0.5
-        if self.focus >= self.max_focus:
-            self.focus = self.max_focus
-
-    def coffee(self):
-        self.energy += 1
-        if self.energy >= self.max_energy:
-            self.energy = self.max_energy
-
-        self.focus += 0.5
-        if self.focus >= self.max_focus:
-            self.focus = self.max_focus
+    def max_control(self):
+        if self.knowledge >= self.max_knowledge:
+            self.knowledge = self.max_knowledge
+        if self.practice >= self.max_practice:
+            self.practice = self.max_practice
+        # if self.coach_capacity >= self.max_coach_capacity:
+            # self.coach_capacity = self.max_coach_capacity
+        super().max_control()
 
     def sleep(self, hour):
-        if int(hour) > 7:
+        print(f'{self.name} ve snu přemýšlí, jak se bude řešit HW.')
+        if int(hour) >= 5:
             self.focus = self.max_focus
         else:
             self.focus += 0.25 * hour
-
-    def nabití_kouce(self):
-        pass
-
-    def control(self):
-        if self.energy == 0:
-            print(f'{self.name} potřebuje nabrat energii. Najíst se.')
-        if self.focus == 0:
-            print(f'{self.name} potřebuje dělat chvilku něco jiného než se učit.')
