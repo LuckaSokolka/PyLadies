@@ -1,4 +1,4 @@
-# PyLadies 9/2022 - 01/2023
+# PyLadies 9/2022 - 12/2022
 in this repository are projects done with my mentor from PyLadies
 
 [tic-tack-toe](https://github.com/LuckaSokolka/pyladies/blob/main/06%20pi%C5%A1kvorky/piskvorky1D.py)<br>
